@@ -1,0 +1,58 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <h2>Szczegóły zlecenia</h2>
+
+    <form action="" class="form">
+        <fieldset>
+            <legend>Zlecenie</legend>
+
+            <label for="patients">Pacjent:<sup>*</sup></label>
+            <select name="patients" id="patients" disabled>
+                <option value="none" disabled hidden>-- Wybierz pacjenta --</option>
+                <option value="2" selected="selected">Kowalska Janina; 01234567890; 09-10-1978</option>
+                <option value="1">Ochojski Marian; 56789012345; 24-08-1999</option>
+            </select>
+
+            <label for="OrderDate">Data zlecenia:</label>
+            <input type="date" id="OrderDate" name="OrderDate" min="2018-01-01" value="2020-10-01" disabled />
+
+            <label for="ResultDate">Data wyniku:</label>
+            <input type="date" id="ResultDate" name="ResultDate" min="2018-01-01" value="2020-10-08" disabled />
+
+            <label for="LabTests"> Badanie:<sup>*</sup></label>
+            <select id="LabTests" name="LabTests" disabled>
+                <option value="none" disabled hidden>-- Wybierz badanie --</option>
+                <option value="1" selected="selected">Troponina</option>
+                <option value="2">Bilirubina</option>
+            </select>
+
+            <label for="Status"> Status:</label>
+            <select id="Status" name="Status" disabled>
+                <option value="Zwykły" selected="selected">Zwykły</option>
+                <option value="Cito">Cito</option>
+            </select>
+
+            <label for="ResultValue">Wynik:</label>
+
+            <input id="ResultValue" name="ResultValue" type="number" value="5.5" disabled />
+
+            <label for="ResultComments"> Uwagi:</label>
+
+            <textarea name="ResultComments" id="ResultComments" rows="10" cols="30" disabled>
+                    </textarea>
+
+
+            <div class="form-buttons">
+                <a href="NewResult-form_Kowalska.html" class="form-button-edit">Edytuj</a>
+
+            </div>
+        </fieldset>
+    </form>
+    <div>
+        <a href="/orders/" class="button-return">Powrót</a>
+    </div>
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

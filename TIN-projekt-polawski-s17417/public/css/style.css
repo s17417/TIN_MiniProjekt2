@@ -1,0 +1,424 @@
+html {
+    background-color: #e1e2e2;
+    font-family: sans-serif;
+}
+
+body {
+    min-width: 360px;
+  }
+
+header, 
+main, 
+footer {
+    background-color: white;
+}
+
+header,
+main,
+footer,
+nav {
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0px 10px 13px -10px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+header, 
+footer {
+    background-color: #2424aa;
+    color: white;
+    padding: 2rem;
+    border: 2px;
+    border-radius: 1.7rem;
+    border-color: white;
+    border-style: solid;
+   
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav {
+    background-color: #2424aa;
+    color: white;
+    padding:0rem 2rem;
+    border: 2px;
+    border-radius: 1.7rem;
+    border-color: white;
+    border-style: solid;
+    
+}
+
+nav ul{
+    display: flex;
+    justify-content: center;
+    margin: 0rem;
+    padding: 0rem;
+    list-style-type: none;
+}
+
+nav ul li a {
+    display: inline-block;
+    color:white;
+    padding: 1rem 1rem;
+    text-decoration: none;
+    text-align: center;
+}
+
+nav ul li a:hover{
+    color:#800000;
+    background-color: white;
+}
+
+nav ul li a.active {
+    color:#800000;
+    background-color: white;
+}
+
+main {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+footer {
+    text-align: center;
+}
+
+main h2 {
+    border-bottom: 1px solid #800000;
+    margin-bottom: 2rem;
+}
+
+.table-list {
+    border-collapse: collapse;
+    color:#2c3e50;
+    width: 100%;
+    font-size: 0.7rem;
+}
+
+.table-list,
+.table-list th,
+.table-list td {
+    border: 1px solid #2424aa56;
+}
+
+.table-list th,
+.table-list td {
+    padding: 0.3rem;
+}
+
+.table-list th,
+.table-list tbody tr:nth-child(even) {
+    background-color: #2424aa1f;
+}
+
+.list-actions {
+    display: flex;
+    flex-wrap:nowrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+    text-align: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-actions li {
+    margin-right: 0.1rem;
+}
+
+.list-actions-button-details,
+.list-actions-button-edit,
+.list-actions-button-delete {
+    display: inline-block;
+    width: 65px;
+    
+}
+
+.list-actions-button-details,
+.list-actions-button-edit,
+.list-actions-button-delete,
+.button-add,
+.button-return,
+.form-button-submit,
+.form-button-cancel,
+.form-button-edit  {
+    padding: 0.25rem 0.25rem;
+    border: none;
+    border-radius: 1.5rem;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.8rem;
+    background-color: #800000;
+}
+
+
+
+.list-actions-button-details:hover,
+.list-actions-button-edit:hover,
+.list-actions-button-delete:hover,
+.button-add:hover,
+.button-return:hover,
+.form-button-submit:hover,
+.form-button-cancel:hover,
+.form-button-edit:hover {
+    background-color: #80000028;
+}
+
+.button-return{
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+
+.button-return,
+.button-add,
+.form-button-submit,
+.form-button-cancel
+.form-button-edit {
+    padding: 0.3rem 1rem;
+}
+
+.button-return:focus,
+.button-add:focus,
+.form-button-submit:focus,
+.form-button-cancel:focus {
+    padding: 0.3rem 1rem;
+    outline: none;
+    box-shadow: 0 0 1px 2px black;
+}
+
+
+.form-button-submit,
+.form-button-cancel,
+.form-button-edit {
+    width: 100%;
+}
+
+.form-button-cancel,
+.form-button-edit  {
+    box-sizing: border-box;
+    display: block;
+}
+
+.form-button-submit {
+    margin-bottom: 0.5rem;
+}
+.form-button-edit {
+    margin-bottom: 0.5rem;
+}
+
+button, 
+input, 
+select, 
+textarea { 
+    font-family: inherit; 
+    font-size: 100%; 
+    box-sizing: border-box; 
+    padding: 0; margin: 0; 
+    
+} 
+
+textarea{
+    resize: none;
+}
+
+fieldset{
+    border-color: #2424aa;
+    padding: 1rem 1rem;
+    border-style: dashed;
+    border-width: 0.1rem;
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: 140px 280px 1fr;
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+
+legend{
+    display: inline-block;
+    grid-column: 1 / 4;
+    padding-right: 1rem;
+    width: max-content;
+}
+
+textarea { 
+    overflow: auto; 
+}
+
+.form {
+    display: inline-block;
+}
+
+.form select, 
+.form textarea,
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="date"],
+.form input[type="email"] {
+    border: 1px solid #2424aa;
+    color:#800000;
+    border-radius: 0.8rem;
+    padding: 0.5rem;
+    width: 100%;
+    grid-column: 2/3;
+}
+
+.form select:focus, 
+.form textarea:focus,
+.form input[type="text"]:focus,
+.form input[type="number"]:focus,
+.form input[type="date"]:focus,
+.form input[type="email"]:focus {
+    outline: none;
+    box-shadow: 0 0 3px  #2424aa;
+    border-radius: 0.8rem;
+    padding: 0.5rem;
+}
+
+form  label {
+    display: inline;
+    grid-column: 1/2;
+    padding: 0.5rem 0rem;
+}
+
+
+.label-radio {
+    display: inline;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+abbr[title='required'] {
+    color: #c0392b;
+}
+
+.form-buttons{
+    margin-top: 1rem;
+    grid-column: 1 / span 2;
+}
+
+.errors-text {
+    display: inline;
+    color:#e74c3c;
+    font-size: 0.85em;
+    line-height: 2.25rem;
+    grid-column: 3/4;
+}
+
+#errorSummary{
+    grid-column: 1/4;
+}
+
+.form input.error-input,
+.form select.error-input {
+  border: 3px solid #e74c3c
+}
+
+@media all and (max-width: 720px) {
+    header {
+        flex-direction: column;
+    }
+
+    header h1 {
+        text-align: center;
+    }
+
+    header img {
+        align-self: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        flex-basis: 50%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+    }
+
+    fieldset {
+        grid-template-columns: 1fr;
+        row-gap: unset;
+        margin-left: unset;
+    }
+
+
+    legend{
+        grid-column: 1 / 2;
+    }
+
+    .form input[type="text"],
+    .form input[type="number"],
+    .form input[type="date"],
+    .form textarea,
+    .form select {
+        grid-column: 1/2;
+    } 
+    
+    
+    .form .errors-text{
+        margin-bottom: 1rem;
+        grid-column: 1/2;
+    }
+ 
+    .list-actions{
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+    
+    .list-actions li {
+        margin-right: 0rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .table-list {
+        font-size: 0.6rem;
+    }
+
+    .table-list th,
+    .table-list td {
+        word-break:break-all;
+        padding: 0.1rem;
+        width: 1%;
+        word-break: normal;
+        padding: 0.1rem;
+    }
+
+    .table-list{
+        display: inline-block;
+        white-space:nowrap;
+        overflow-x: scroll;
+    }
+}
+
+@media all and (max-width: 400px) {  
+    nav ul, 
+    footer {
+        margin:  0;
+    }
+
+    body,
+    header,
+    main,
+    nav {
+            margin:  0rem 0rem 0.5rem 0rem;
+    }
+
+    nav ul li {
+        flex-basis: 100%;
+    }
+
+}
+

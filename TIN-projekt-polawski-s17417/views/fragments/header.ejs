@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <title>Rejestr badań laboratoryjnych</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Rejestr badań laboratoryjnych</h1>
+        <img src="/img/11-60.png" alt="rejestr">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : '' %>">Strona główna</a></li>
+            <li><a href="/patients/" class="<%= navLocation == 'patient' ? 'active' : '' %>">Pacjenci</a></li>
+            <li><a href="/labTests/" class="<%= navLocation == 'labTest' ? 'active' : '' %>">Badania</a></li>
+            <li><a href="/orders/" class="<%= navLocation == 'order' ? 'active' : '' %>">Zlecenia</a></li>
+        </ul>
+    </nav>

@@ -1,0 +1,56 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+    <h2>Szczegóły badania</h2>
+    <form action="" class="form">
+        <fieldset>
+            <legend>Badanie</legend>
+
+            <label for="name"> Nazwa:</label>
+            <input type="text" name="name" id="name" value="Bilirubina" disabled />
+
+            <label for="Units"> Jednostki:</label>
+            <input type="text" name="Units" id="Units" value="mg/dl" disabled />
+
+
+            <div class="form-buttons">
+                <a href="LabTest-form_Bilirubina.html" class="form-button-edit">Edytuj</a>
+            </div>
+        </fieldset>
+    </form>
+
+    <h2>Lista zleceń</h2>
+    <table class="table-list">
+        <thead>
+            <tr>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Pesel</th>
+                <th>Data urodzenia</th>
+                <th>Data zlecenia</th>
+                <th>Data wyniku</th>
+                <th>Status</th>
+                <th>Wynik</th>
+            </tr>
+        <tbody>
+            <tr>
+                <td>Marian</td>
+                <td>Ochojski</td>
+                <td>56789012345</td>
+                <td>24-08-1999</td>
+                <td>04-10-2020</td>
+                <td>08-10-2020</td>
+                <td>Cito</td>
+                <td>1,2 mg/dl</td>
+            </tr>
+        </tbody>
+
+
+    </table>
+    <div>
+        <a href="/labTests/" class="button-return">Powrót</a>
+    </div>
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

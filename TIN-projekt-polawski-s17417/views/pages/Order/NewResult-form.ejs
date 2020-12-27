@@ -1,0 +1,58 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+	<script type="application/javascript" src="/js/validationNewResultForm.js"></script>
+	<h2>Dodaj zlecenie</h2>
+
+	<form class="form" novalidate onsubmit="return validateForm()">
+		<fieldset>
+			<legend>Zlecenie</legend>
+			<label for="patients">Pacjent:<sup>*</sup></label>
+			<select name="patients" id="patients">
+				<option value="" selected disabled hidden>-- Wybierz pacjenta --</option>
+				<option value="2">Kowalska Janina; 01234567890; 09-10-1978</option>
+				<option value="1">Ochojski Marian; 56789012345; 24-08-1999</option>
+			</select>
+			<span id="errorPatients" class="errors-text"></span>
+
+			<label for="OrderDate">Data zlecenia:</label>
+			<input type="date" id="OrderDate" name="OrderDate" min="2018-01-01" />
+			<span id="errorOrderDate" class="errors-text"></span>
+
+			<label for="ResultDate">Data wyniku:</label>
+			<input type="date" id="ResultDate" name="ResultDate" min="2018-01-01" />
+			<span id="errorResultDate" class="errors-text"></span>
+
+			<label for="LabTests"> Badanie:<sup>*</sup></label>
+			<select id="LabTests" name="LabTests">
+				<option value="" selected disabled hidden>-- Wybierz badanie --</option>
+				<option value="1">Troponina</option>
+				<option value="2">Bilirubina</option>
+			</select>
+			<span id="errorLabTests" class="errors-text"></span>
+
+			<label for="Status"> Status:</label>
+			<select id="Status" name="Status">
+				<option value="Zwykły">Zwykły</option>
+				<option value="Cito">Cito</option>
+			</select>
+			<span id="errorStatus" class="errors-text"></span>
+
+			<label for="ResultValue">Wynik:</label>
+			<input id="ResultValue" name="ResultValue" type="number" />
+			<span id="errorResultValue" class="errors-text"></span>
+
+			<label for="ResultComments"> Uwagi:</label>
+			<textarea name="ResultComments" id="ResultComments" rows="10" cols="30">
+				</textarea>
+
+			<div class="form-buttons">
+				<p id="errorSummary" class="errors-text"></p>
+				<input type="submit" value="Dodaj" class="form-button-submit" />
+				<a href="/" class="form-button-cancel">Anuluj</a>
+			</div>
+		</fieldset>
+	</form>
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
