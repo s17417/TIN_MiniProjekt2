@@ -1,10 +1,10 @@
 function validateForm() {
-    const patientsInput = document.getElementById('patients');
-    const orderDateInput = document.getElementById('OrderDate');
-    const resultDateInput = document.getElementById('ResultDate');
-    const labTestsInput = document.getElementById('LabTests');
-    const statusInput = document.getElementById('Status');
-    const resultValueInput = document.getElementById('ResultValue');
+    const patientsInput = document.getElementById('patient_id');
+    const orderDateInput = document.getElementById('orderDate');
+    const resultDateInput = document.getElementById('resultDate');
+    const labTestsInput = document.getElementById('labTest_id');
+    const statusInput = document.getElementById('status');
+    const resultValueInput = document.getElementById('resultValue');
 
     const errorPatients = document.getElementById('errorPatients');
     const errorOrderDate = document.getElementById('errorOrderDate');

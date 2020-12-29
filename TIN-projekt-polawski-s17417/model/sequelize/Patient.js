@@ -18,7 +18,8 @@ const Patient = sequelize.define('Patient', {
     },
     idnumber: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: true,
+        unique: true
     },
     birthdate: {
         type: Sequelize.DATE,

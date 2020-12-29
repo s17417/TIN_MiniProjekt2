@@ -5,7 +5,7 @@
 	<table class="table-list">
 		<thead>
 			<tr>
-				<th>Imie</th>
+				<th>Imię</th>
 				<th>Nazwisko</th>
 				<th>Data ur.</th>
 				<th>Badanie</th>
@@ -15,20 +15,21 @@
 				<th>Akcje</th>
 			</tr>
 		<tbody>
+			<% for (let ord of ords) { %>
 			<tr>
-				<td>Janina</td>
-				<td>Kowalska</td>
-				<td>09-10-1978</td>
-				<td>Troponina</td>
-				<td>01-10-2020</td>
-				<td>08-10-2020</td>
-				<td>5,5 UI</td>
+				<td><%= ord.patient.firstname %></td>
+				<td><%= ord.patient.surname %></td>
+				<td><%= ord.patient.birthdate.toISOString().split('T')[0] %></td>
+				<td><%= ord.labTest.name %></td>
+				<td><%= ord.orderDate==null ? '' : ord.orderDate.toISOString().split('T')[0] %></td>
+				<td><%= ord.resultDate==null ? '' : ord.resultDate.toISOString().split('T')[0] %></td>
+				<td><%= ord.resultValue==null ? '' : ord.resultValue+' '+ord.labTest.units %> </td>
 				<td>
 					<ul class="list-actions">
-						<li><a href="/orders/details/2" class="list-actions-button-details">Szczegóły</a>
+						<li><a href="/orders/details/<%= ord._id %>" class="list-actions-button-details">Szczegóły</a>
 						</li>
-						<li><a href="NewResult-form_Kowalska.html" class="list-actions-button-edit">Edytuj</a></li>
-						<li><a href="" class="list-actions-button-delete">Usuń</a></li>
+						<li><a href="/orders/edit/<%= ord._id %>" class="list-actions-button-edit">Edytuj</a></li>
+						<li><a href="/orders/delete/<%= ord._id %>" class="list-actions-button-delete">Usuń</a></li>
 
 					</ul>
 				</td>
@@ -36,7 +37,7 @@
 
 		</tbody>
 
-
+		<% } %>
 	</table>
 	<p>
 		<a href="/orders/add" class="button-add">Dodaj nowe zlecenie</a>

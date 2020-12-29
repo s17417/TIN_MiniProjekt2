@@ -33,20 +33,28 @@ exports.getOrderById = (orderId) => {
 };
 
 exports.createOrder = (data) => {
-    console.log(JSON.stringify(data));
-
     return Order.create({
         patient_id: data.patient_id,
-        orderDate: data.orderDate,
-        resultDate: data.resultDate,
+        orderDate: data.orderDate=='' ? null: data.orderDate,
+        resultDate: data.resultDate=='' ? null: data.resultDate,
         labTest_id: data.labTest_id,
-        resultValue: data.resultValue,
+        status: data.status,
+        resultValue: data.resultValue=='' ? null: data.resultValue,
         resultComment: data.resultComment
     });
 };
 
 exports.updateOrder = (orderId, data) => {
-    return Order.update(data, { where: { _id: orderId } });
+    return Order.update({
+        patient_id: data.patient_id,
+        orderDate: data.orderDate=='' ? null: data.orderDate,
+        resultDate: data.resultDate=='' ? null: data.resultDate,
+        labTest_id: data.labTest_id,
+        status: data.status,
+        resultValue: data.resultValue=='' ? null: data.resultValue,
+        resultComment: data.resultComment
+    },
+        { where: { _id: orderId } });
 }
 
 exports.deleteOrder = (orderId) => {

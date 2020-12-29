@@ -2,55 +2,69 @@
 
 <main>
 	<script type="application/javascript" src="/js/validationNewResultForm.js"></script>
-	<h2>Dodaj zlecenie</h2>
+	<h2><%= pageTitle %></h2>
 
-	<form class="form" novalidate onsubmit="return validateForm()">
+	<form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
 		<fieldset>
-			<legend>Zlecenie</legend>
-			<label for="patients">Pacjent:<sup>*</sup></label>
-			<select name="patients" id="patients">
-				<option value="" selected disabled hidden>-- Wybierz pacjenta --</option>
-				<option value="2">Kowalska Janina; 01234567890; 09-10-1978</option>
-				<option value="1">Ochojski Marian; 56789012345; 24-08-1999</option>
+			<legend><%= pageTitle %></legend>
+
+			<input type="hidden" name="_id" value="<%= ord._id %>">
+
+			<label for="patient_id">Pacjent:<sup>*</sup></label>
+			<select name="patient_id" id="patient_id" <%= formMode=='showDetails' ? 'disabled' : '' %>>
+				<option value="" label="-- Wybierz pacjenta --" disabled hidden <%= formMode=='createNew' ? 'selected' : '' %>/>
+				<% for (let pat of allPats) { %>
+				<option value="<%= pat._id %>" label="<%= pat.surname + ' ' + pat.firstname +'\t> '+ (pat.idnumber==null ? '           ' : pat.idnumber) + ', ' + (pat.birthdate==null ? '' : pat.birthdate.toISOString().split('T')[0]) %>" />
+				<% } %>
 			</select>
 			<span id="errorPatients" class="errors-text"></span>
 
-			<label for="OrderDate">Data zlecenia:</label>
-			<input type="date" id="OrderDate" name="OrderDate" min="2018-01-01" />
+			<label for="orderDate">Data zlecenia:</label>
+			<input type="date" id="orderDate" name="orderDate" min="2018-01-01" value="<%= ord.orderDate==null ? '' :ord.orderDate.toISOString().split('T')[0] %>" <%= formMode=='showDetails' ? 'disabled' : '' %> />
 			<span id="errorOrderDate" class="errors-text"></span>
 
-			<label for="ResultDate">Data wyniku:</label>
-			<input type="date" id="ResultDate" name="ResultDate" min="2018-01-01" />
+			<label for="resultDate">Data wyniku:</label>
+			<input type="date" id="resultDate" name="resultDate" min="2018-01-01" value="<%= ord.resultDate==null ? '' : ord.resultDate.toISOString().split('T')[0] %>" <%= formMode=='showDetails' ? 'disabled' : '' %> />
 			<span id="errorResultDate" class="errors-text"></span>
 
-			<label for="LabTests"> Badanie:<sup>*</sup></label>
-			<select id="LabTests" name="LabTests">
-				<option value="" selected disabled hidden>-- Wybierz badanie --</option>
-				<option value="1">Troponina</option>
-				<option value="2">Bilirubina</option>
+			<label for="labTest_id"> Badanie:<sup>*</sup></label>
+			<select id="labTest_id" name="labTest_id" <%= formMode=='showDetails' ? 'disabled' : '' %>>
+				<option value="" label="-- Wybierz badanie --" disabled hidden <%= formMode=='createNew' ? 'selected' : '' %> />
+				<% for (lab of allLabs) { %>
+				<option value="<%= lab._id %>" label="<%= lab._id + ' ' + lab.name %>" />
+				<% } %>
 			</select>
 			<span id="errorLabTests" class="errors-text"></span>
 
-			<label for="Status"> Status:</label>
-			<select id="Status" name="Status">
-				<option value="Zwykły">Zwykły</option>
-				<option value="Cito">Cito</option>
+			<label for="status"> Status:</label>
+			<select id="status" name="status" <%= formMode=='showDetails' ? 'disabled' : '' %>>
+				<option value="Zwykły" label="Zwykły" <%= formMode!='createNew' &&  ord.status=='Zwykły'? 'selected' : ''%> />
+				<option value="Cito" label="Cito" <%= formMode!='createNew' &&  ord.status=='Cito'? 'selected' : ''%> />
 			</select>
 			<span id="errorStatus" class="errors-text"></span>
 
-			<label for="ResultValue">Wynik:</label>
-			<input id="ResultValue" name="ResultValue" type="number" />
+			<label for="resultValue">Wynik:</label>
+			<input id="resultValue" name="resultValue" type="number" value="<%= ord.resultValue %>" <%= formMode=='showDetails' ? 'disabled' : '' %> />
 			<span id="errorResultValue" class="errors-text"></span>
 
-			<label for="ResultComments"> Uwagi:</label>
-			<textarea name="ResultComments" id="ResultComments" rows="10" cols="30">
-				</textarea>
+			<label for="resultComments"> Uwagi:</label>
+			<textarea name="resultComments" id="resultComments" rows="10" cols="30" <%= formMode=='showDetails' ? 'disabled' : '' %> > 
+				<%= ord.ResultComments %>
+			</textarea>
 
-			<div class="form-buttons">
-				<p id="errorSummary" class="errors-text"></p>
-				<input type="submit" value="Dodaj" class="form-button-submit" />
-				<a href="/" class="form-button-cancel">Anuluj</a>
-			</div>
+			<p id="errorSummary" class="errors-text"></p>
+			<% if (formMode=='showDetails' ) { %>
+				<div class="form-buttons">
+					<a href="/orders/edit/<%= ord._id %>" class="form-button-edit">Edytuj</a>
+					<a class="form-button-cancel" href="/orders">Powrót</a>
+				</div>
+			<% } else { %>
+				<div class="form-buttons">
+					<input type="submit" class="form-button-submit" value="<%=btnLabel%>" />
+					<a class="form-button-cancel" href="/orders">Anuluj</a>
+				</div>
+
+			<% } %>
 		</fieldset>
 	</form>
 </main>

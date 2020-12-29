@@ -25,7 +25,8 @@ const Order = sequelize.define('Order', {
         allowNull: false
     },
     status: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM('Zwykły', 'Cito'),
+        defaultValue: 'Zwykły',
         allowNull: false
     },
     resultValue: {

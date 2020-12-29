@@ -27,18 +27,20 @@ exports.createPatient = (newPatientData) => {
         firstname: newPatientData.firstname,
         surname: newPatientData.surname,
         birthdate: newPatientData.birthdate,
-        idnumber: newPatientData.idnumber,
+        idnumber: newPatientData.idnumber!='' ? newPatientData.idnumber : null,
         PatientComments: newPatientData.PatientComments
     }); 
 };
 
 exports.updatePatient = (patId, patData) => {
-    const firstname = patData.firstname;
-    const surname = patData.surname;
-    const birthdate = patData.birthdate;
-    const idnumber = patData.idnumber;
-    const PatientComments = patData.PatientComments;
-    return Patient.update(patData, { where: { _id: patId } });
+    return Patient.update({
+        firstname: patData.firstname,
+        surname: patData.surname,
+        birthdate: patData.birthdate,
+        idnumber: patData.idnumber!='' ? patData.idnumber : null,
+        PatientComments: patData.PatientComments
+    },
+        { where: { _id: patId } });
 };
 
 exports.deletePatient = (patId) => {
