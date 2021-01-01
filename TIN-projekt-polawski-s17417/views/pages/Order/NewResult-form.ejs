@@ -4,37 +4,53 @@
 	<script type="application/javascript" src="/js/validationNewResultForm.js"></script>
 	<h2><%= pageTitle %></h2>
 
-	<form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
+	<form class="form" method="post" action="<%=formAction%>" novalidate>
 		<fieldset>
 			<legend><%= pageTitle %></legend>
 
 			<input type="hidden" name="_id" value="<%= ord._id %>">
 
 			<label for="patient_id">Pacjent:<sup>*</sup></label>
-			<select name="patient_id" id="patient_id" <%= formMode=='showDetails' ? 'disabled' : '' %>>
-				<option value="" label="-- Wybierz pacjenta --" disabled hidden <%= formMode=='createNew' ? 'selected' : '' %>/>
+			<select name="patient_id" id="patient_id" class="<%= validationErrors.find(e => e.path.includes('patient_id')) ? 'error-input' : '' %>" <%= formMode=='showDetails' ? 'disabled' : '' %>>
+				<option value="" label="-- Wybierz pacjenta --" disabled hidden <%=!ord.patient_id && formMode=='createNew' ? 'selected' : '' %>/>
 				<% for (let pat of allPats) { %>
-				<option value="<%= pat._id %>" label="<%= pat.surname + ' ' + pat.firstname +'\t> '+ (pat.idnumber==null ? '           ' : pat.idnumber) + ', ' + (pat.birthdate==null ? '' : pat.birthdate.toISOString().split('T')[0]) %>" />
+				<option value="<%= pat._id %>" <%=ord.patient_id==pat._id ? 'selected' : '' %>  label="<%= pat.surname + ' ' + pat.firstname +'\t> '+ (pat.idnumber==null ? '           ' : pat.idnumber) + ', ' + (pat.birthdate==null ? '' : pat.birthdate.toISOString().split('T')[0]) %>" />
 				<% } %>
 			</select>
-			<span id="errorPatients" class="errors-text"></span>
+			<span id="errorPatients" class="errors-text">
+				<% if (validationErrors.find(e => e.path.includes('patient_id'))) { %>
+					<%= validationErrors.find(e => e.path.includes('patient_id')).message %>
+				<% } %>
+			</span>
 
 			<label for="orderDate">Data zlecenia:</label>
-			<input type="date" id="orderDate" name="orderDate" min="2018-01-01" value="<%= ord.orderDate==null ? '' :ord.orderDate.toISOString().split('T')[0] %>" <%= formMode=='showDetails' ? 'disabled' : '' %> />
-			<span id="errorOrderDate" class="errors-text"></span>
+			<input type="date" id="orderDate" name="orderDate" min="2018-01-01" class="<%= validationErrors.find(e => e.path.includes('orderDate')) ? 'error-input' : '' %>" value="<%= ord.orderDate=='' || ord.orderDate==null ? '' : new Date(ord.orderDate).toISOString().split('T')[0] %>" <%= formMode=='showDetails' ? 'disabled' : '' %> />
+			<span id="errorOrderDate" class="errors-text">
+				<% if (validationErrors.find(e => e.path.includes('orderDate'))) { %>
+					<%= validationErrors.find(e => e.path.includes('orderDate')).message %>
+				<% } %>
+			</span>
 
 			<label for="resultDate">Data wyniku:</label>
-			<input type="date" id="resultDate" name="resultDate" min="2018-01-01" value="<%= ord.resultDate==null ? '' : ord.resultDate.toISOString().split('T')[0] %>" <%= formMode=='showDetails' ? 'disabled' : '' %> />
-			<span id="errorResultDate" class="errors-text"></span>
+			<input type="date" id="resultDate" name="resultDate" min="2018-01-01" class="<%= validationErrors.find(e => e.path.includes('resultDate')) ? 'error-input' : '' %>" value="<%= ord.resultDate=='' || ord.resultDate==null ? '' : new Date(ord.resultDate).toISOString().split('T')[0] %>" <%= formMode=='showDetails' ? 'disabled' : '' %> />
+			<span id="errorResultDate" class="errors-text">
+				<% if (validationErrors.find(e => e.path.includes('resultDate'))) { %>
+					<%= validationErrors.find(e => e.path.includes('resultDate')).message %>
+				<% } %>
+			</span>
 
 			<label for="labTest_id"> Badanie:<sup>*</sup></label>
-			<select id="labTest_id" name="labTest_id" <%= formMode=='showDetails' ? 'disabled' : '' %>>
-				<option value="" label="-- Wybierz badanie --" disabled hidden <%= formMode=='createNew' ? 'selected' : '' %> />
+			<select id="labTest_id" name="labTest_id" class="<%= validationErrors.find(e => e.path.includes('labTest_id')) ? 'error-input' : '' %>" <%= formMode=='showDetails' ? 'disabled' : '' %>>
+				<option value="" label="-- Wybierz badanie --" disabled hidden <%=!ord.labTest_id && formMode=='createNew' ? 'selected' : '' %> />
 				<% for (lab of allLabs) { %>
-				<option value="<%= lab._id %>" label="<%= lab._id + ' ' + lab.name %>" />
+				<option value="<%= lab._id %>" <%=ord.labTest_id==lab._id ? 'selected' : '' %> label="<%= lab._id + ' ' + lab.name %>" />
 				<% } %>
 			</select>
-			<span id="errorLabTests" class="errors-text"></span>
+			<span id="errorLabTests" class="errors-text">
+				<% if (validationErrors.find(e => e.path.includes('labTest_id'))) { %>
+					<%= validationErrors.find(e => e.path.includes('labTest_id')).message %>
+				<% } %>
+			</span>
 
 			<label for="status"> Status:</label>
 			<select id="status" name="status" <%= formMode=='showDetails' ? 'disabled' : '' %>>
@@ -44,15 +60,17 @@
 			<span id="errorStatus" class="errors-text"></span>
 
 			<label for="resultValue">Wynik:</label>
-			<input id="resultValue" name="resultValue" type="number" value="<%= ord.resultValue %>" <%= formMode=='showDetails' ? 'disabled' : '' %> />
-			<span id="errorResultValue" class="errors-text"></span>
+			<input id="resultValue" name="resultValue" type="number" class="<%= validationErrors.find(e => e.path.includes('resultValue')) ? 'error-input' : '' %>" value="<%= ord.resultValue %>" <%= formMode=='showDetails' ? 'disabled' : '' %> />
+			<span id="errorResultValue" class="errors-text">
+				<% if (validationErrors.find(e => e.path.includes('resultValue'))) { %>
+					<%= validationErrors.find(e => e.path.includes('resultValue')).message %>
+				<% } %>
+			</span>
 
 			<label for="resultComments"> Uwagi:</label>
-			<textarea name="resultComments" id="resultComments" rows="10" cols="30" <%= formMode=='showDetails' ? 'disabled' : '' %> > 
-				<%= ord.ResultComments %>
-			</textarea>
+			<textarea name="resultComments" id="resultComments" rows="10" cols="30" <%= formMode=='showDetails' ? 'disabled' : '' %> ><%= ord.ResultComments %></textarea>
 
-			<p id="errorSummary" class="errors-text"></p>
+			<p id="errorSummary" class="errors-text"><%=(Array.isArray(validationErrors) && validationErrors.length) ? 'Formularz zawiera błędy' : '' %></p>
 			<% if (formMode=='showDetails' ) { %>
 				<div class="form-buttons">
 					<a href="/orders/edit/<%= ord._id %>" class="form-button-edit">Edytuj</a>

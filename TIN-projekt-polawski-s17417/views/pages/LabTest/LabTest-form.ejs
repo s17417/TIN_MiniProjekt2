@@ -3,21 +3,29 @@
 <main>
     <script type="application/javascript" src="/js/validationLabTestForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
+    <form class="form" method="post" action="<%=formAction%>" novalidate>
         <fieldset>
             <legend><%= pageTitle %></legend>
             <input type="hidden" name="_id" value="<%= lab._id %>">
 
             <label for="name"> Nazwa:<sup>*</sup></label>
-            <input type="text" name="name" id="name" value="<%= lab.name %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
-            <span id="errorName" class="errors-text"></span>
+            <input type="text" name="name" id="name" class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>" value="<%= lab.name %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
+            <span id="errorName" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('name'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('name')).message %>
+                <% } %>
+            </span>
 
             <label for="units"> Jednostki:<sup>*</sup></label>
-            <input type="text" name="units" id="units" value="<%= lab.units %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
-            <span id="errorUnits" class="errors-text"></span>
+            <input type="text" name="units" id="units" class="<%= validationErrors.find(e => e.path.includes('units')) ? 'error-input' : '' %>" value="<%= lab.units %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
+            <span id="errorUnits" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('units'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('units')).message %>
+                <% } %>
+            </span>
 
 
-            <p id="errorSummary" class="errors-text"></p>
+            <p id="errorSummary" class="errors-text"><%=(Array.isArray(validationErrors) && validationErrors.length) ? 'Formularz zawiera błędy' : '' %></p>
 				<% if (formMode=='showDetails' ) { %>
 					<div class="form-buttons">
 						<a href="/labTests/edit/<%= lab._id %>" class="form-button-edit">Edytuj</a>

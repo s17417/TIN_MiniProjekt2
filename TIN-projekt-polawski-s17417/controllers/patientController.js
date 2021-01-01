@@ -17,7 +17,8 @@ exports.showAddPatientForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj pacjenta',
         formAction: '/patients/add',
-        navLocation: 'patient'
+        navLocation: 'patient',
+        validationErrors: []
     });
 }
 
@@ -31,7 +32,8 @@ exports.showEditPatientForm = (req, res, next) => {
                 pageTitle: 'Edycja pacjenta',
                 btnLabel: 'Edytuj pacjenta',
                 formAction: '/patients/edit',
-                navLocation: 'patient'
+                navLocation: 'patient',
+                validationErrors:[]
             });
         });
 };
@@ -45,7 +47,8 @@ exports.showPatientDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły pacjenta',
                 formAction: '',
-                navLocation: 'patient'
+                navLocation: 'patient',
+                validationErrors:[]
             });
         });
 }
@@ -59,9 +62,22 @@ exports.addPatient = (req, res, next) => {
     PatientRepository.createPatient(patData)
         .then( result => {
             res.redirect('/patients');
-        }).catch(function(err){
-            console.log(err, req.body);
-        });
+        }).catch(err => {
+            err.errors.forEach(e => {
+                if(e.path.includes('idnumber') && e.type == 'unique violation') {
+                    e.message = "Podany PESEL już istnieje w bazie";
+                }
+             });
+            res.render('pages/Patient/Patient-form', {
+                pat: patData,
+                pageTitle: 'Nowy pacjent',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj pacjenta',
+                formAction: '/patients/add',
+                navLocation: 'patient',
+                validationErrors: err.errors
+            });
+        });  
 };
 
 exports.updatePatient = (req, res, next) => {
@@ -70,7 +86,25 @@ exports.updatePatient = (req, res, next) => {
     PatientRepository.updatePatient(patId, patData)
         .then( result => {
             res.redirect('/patients');
+        }).catch(err => {
+            err.errors.forEach(e => {
+                if(e.path.includes('idnumber') && e.type == 'unique violation') {
+                    e.message = "Podany PESEL już istnieje w bazie";
+                }
+             });
+            PatientRepository.getPatientById(patId).then( pat =>{
+            patData.orders=pat.orders;
+            res.render('pages/Patient/Patient-form', {
+                pat: patData,
+                pageTitle: 'Nowy pacjent',
+                formMode: 'edit',
+                btnLabel: 'Edytuj pacjenta',
+                formAction: '/patients/edit',
+                navLocation: 'patient',
+                validationErrors: err.errors
+            });
         });
+        }); 
 
 };
 

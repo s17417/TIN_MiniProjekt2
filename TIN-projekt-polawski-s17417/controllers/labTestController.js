@@ -1,4 +1,5 @@
 
+const LabTest = require('../model/sequelize/LabTest');
 const LabTestRepository= require('../repository/sequelize/LabTestRepository')
 
 exports.showLabTestList = (req, res, next) => {
@@ -19,7 +20,8 @@ exports.showAddLabTestForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj badanie',
         formAction: '/labTests/add',
-        navLocation: 'labTest' 
+        navLocation: 'labTest',
+        validationErrors: [] 
     });
 }
 
@@ -33,7 +35,8 @@ exports.showEditLabTestForm = (req, res, next) => {
                 pageTitle: 'Edycja badania',
                 btnLabel: 'Edytuj badanie',
                 formAction: '/labTests/edit',
-                navLocation: 'labTest'
+                navLocation: 'labTest',
+                validationErrors: []
             });
         });
 };
@@ -48,7 +51,8 @@ exports.showLabTestDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły badania',
                 formAction: '',
-                navLocation: 'labTest'
+                navLocation: 'labTest',
+                validationErrors: []
             });
         });
 }
@@ -58,8 +62,16 @@ exports.addLabTest = (req, res, next) => {
     LabTestRepository.createLabTest(labData)
         .then( result => {
             res.redirect('/labTests');
-        }).catch(function(err){
-            console.log(err, req.body);
+        }).catch(err => {
+            res.render('pages/LabTest/LabTest-form', { 
+                lab: labData,
+                pageTitle: 'Nowe badanie',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj badanie',
+                formAction: '/labTests/add',
+                navLocation: 'labTest',
+                validationErrors: err.errors
+            });
         });
 };
 
@@ -69,8 +81,21 @@ exports.updateLabTest = (req, res, next) => {
     LabTestRepository.updateLabTest(labId, labData)
         .then( result => {
             res.redirect('/labTests');
+        }).catch(err => {
+            LabTestRepository.getLabTestById(labId)
+            .then(lab => {
+                labData.orders=lab.orders;
+                res.render('pages/LabTest/LabTest-form', { 
+                    lab: labData,
+                    formMode: 'edit',
+                    pageTitle: 'Edycja badania',
+                    btnLabel: 'Edytuj badanie',
+                    formAction: '/labTests/edit',
+                    navLocation: 'labTest',
+                    validationErrors: err.errors
+                });
+            })
         });
-
 };
 
 exports.deleteLabtest = (req, res, next) => {

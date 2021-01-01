@@ -28,7 +28,8 @@ exports.showAddOrderForm = (req, res, next) =>{
                 formMode: 'createNew',
                 btnLabel: 'Dodaj zlecenie',
                 formAction: '/orders/add',
-                navLocation: 'order' 
+                navLocation: 'order',
+                validationErrors: []
             });
         });
 }
@@ -54,7 +55,8 @@ exports.showEditOrderForm = (req, res, next) =>{
                 formMode: 'edit',
                 btnLabel: 'Edytuj zlecenie',
                 formAction: '/orders/edit',
-                navLocation: 'order' 
+                navLocation: 'order',
+                validationErrors: []
             });
         });
 }
@@ -79,7 +81,8 @@ exports.showOrderDetails = (req, res, next) => {
                 pageTitle: 'Szczegóły zlecenia',
                 formMode: 'showDetails',
                 formAction: '',
-                navLocation: 'order'
+                navLocation: 'order',
+                validationErrors: []
         });
     });
 }
@@ -89,8 +92,28 @@ exports.addOrder = (req, res, next) => {
     console.log(ordData);
     OrderRepository.createOrder(ordData).then( result => {
         res.redirect('/orders');
-    }).catch(function(err){
-        console.log(err, req.body);
+    }).catch(err =>{
+        let allPats,allLabs;
+        PatientRepository.getPatients()
+            .then(pats =>{
+                allPats=pats;
+                return LabTestRepository.getLabTests();
+            })
+            .then(labs => {
+                allLabs=labs;
+                res.render('pages/Order/NewResult-form', {
+                    ord: ordData,
+                    allLabs: allLabs,
+                    allPats: allPats,
+                    pageTitle: 'Nowe zlecenie',
+                    formMode: 'createNew',
+                    btnLabel: 'Dodaj zlecenie',
+                    formAction: '/orders/add',
+                    navLocation: 'order',
+                    validationErrors: err.errors 
+                });
+            });
+
     });
 }
 
@@ -100,6 +123,28 @@ exports.updateOrder = (req, res, next) => {
     OrderRepository.updateOrder(ordId, ordData)
         .then(result =>{
             res.redirect('/orders');
+        }).catch(err =>{
+            let allPats,allLabs;
+            PatientRepository.getPatients()
+                .then(pats =>{
+                    allPats=pats;
+                    return LabTestRepository.getLabTests();
+                })
+                .then(labs => {
+                    allLabs=labs;
+                    res.render('pages/Order/NewResult-form', {
+                        ord: ordData,
+                        allLabs: allLabs,
+                        allPats: allPats,
+                        pageTitle: 'Edycja zlecenia',
+                        formMode: 'edit',
+                        btnLabel: 'Edytuj zlecenie',
+                        formAction: '/orders/edit',
+                        navLocation: 'order',
+                        validationErrors: err.errors 
+                    });
+                });
+    
         });
 }
 
