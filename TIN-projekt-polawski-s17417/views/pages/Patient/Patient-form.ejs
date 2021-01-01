@@ -3,7 +3,7 @@
 	<main>
 		<script type="application/javascript" src="/js/validationPatientForm.js"></script>
 		<h2><%= pageTitle %></h2>
-		<form class="form" method="post" action="<%=formAction%>" novalidate>
+		<form class="form" method="post" action="<%=formAction%>" novalidate onsubmit=" return validateForm();">
 			<fieldset>
 				<legend>
 					<%= pageTitle %>

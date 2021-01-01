@@ -89,7 +89,7 @@ exports.showOrderDetails = (req, res, next) => {
 
 exports.addOrder = (req, res, next) => {
     const ordData = { ...req.body};
-    console.log(ordData);
+    //console.log(ordData);
     OrderRepository.createOrder(ordData).then( result => {
         res.redirect('/orders');
     }).catch(err =>{

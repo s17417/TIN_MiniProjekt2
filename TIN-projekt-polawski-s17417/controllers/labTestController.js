@@ -63,6 +63,7 @@ exports.addLabTest = (req, res, next) => {
         .then( result => {
             res.redirect('/labTests');
         }).catch(err => {
+            console.log(err);
             res.render('pages/LabTest/LabTest-form', { 
                 lab: labData,
                 pageTitle: 'Nowe badanie',
@@ -82,6 +83,7 @@ exports.updateLabTest = (req, res, next) => {
         .then( result => {
             res.redirect('/labTests');
         }).catch(err => {
+            console.log(err);
             LabTestRepository.getLabTestById(labId)
             .then(lab => {
                 labData.orders=lab.orders;

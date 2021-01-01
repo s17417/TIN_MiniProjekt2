@@ -62,16 +62,15 @@ function validateForm() {
     }
 
     // Sprawdzenie numeru PESEL
-    if (idInput.value && !checkTextLengthRange(idInput.value, 11, 11)) {
+    if (idInput.value && (!checkTextLengthRange(idInput.value, 11, 11) || !checkREGEX(idInput.value,/^(\d*)$/))) {
         valid = false;
         idInput.classList.add("error-input");
-        erroridInput.innerText = "Pole powinno zawierać 11 znaków";
+        erroridInput.innerText = "PESEL powinien być 11-cyfrowy";
     }
 
     //ogolna infromacja
     if (!valid) {
         errorSummary.innerText = "Formularz zawiera błędy";
     }
-    
     return valid;
 }

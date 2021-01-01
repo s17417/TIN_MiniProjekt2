@@ -32,10 +32,10 @@ function validateForm() {
         errorLabTests.innerText = "Pole jest wymagane";
     }
 
-    if (resultValueInput.value && !checkNumber(resultValueInput.value)) {
+    if (resultValueInput.value && (!checkNumber(resultValueInput.value) || !checkREGEX(resultValueInput.value,/^(\d{0,7})(([.,]\d*)|)$/))) {
         valid = false;
         resultValueInput.classList.add("error-input");
-        errorResultValue.innerText = "Pole powinno być liczbą";
+        errorResultValue.innerText = "Pole powinno być liczbą max 10e7";
     }
 
     let nowDate = new Date(),

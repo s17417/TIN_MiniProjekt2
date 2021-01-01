@@ -74,3 +74,13 @@ function checkDate(value) {
     const pattern = /(\d{4})-(\d{2})-(\d{2})/;
     return pattern.test(value);
 }
+
+function checkREGEX(value,regex){
+    if (!value) {
+        return false;
+    }
+    if (!regex.test(value)) {
+        return false;
+    }
+    return true;
+}

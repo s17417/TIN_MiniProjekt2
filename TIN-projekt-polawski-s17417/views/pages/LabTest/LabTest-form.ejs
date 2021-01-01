@@ -3,7 +3,7 @@
 <main>
     <script type="application/javascript" src="/js/validationLabTestForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%=formAction%>" novalidate>
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
         <fieldset>
             <legend><%= pageTitle %></legend>
             <input type="hidden" name="_id" value="<%= lab._id %>">
