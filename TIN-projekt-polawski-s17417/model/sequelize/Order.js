@@ -92,7 +92,7 @@ const Order = sequelize.define('Order', {
             }
         }
     },
-    resultComment: {
+    resultComments: {
         type: Sequelize.TEXT('tiny'),
         allowNull: true,
     },

@@ -55,9 +55,9 @@ module.exports = () => {
         .then(ord => {
             if (!ord || ord.length == 0) {
                 return Order.bulkCreate([
-                    { patient_id: allPatients[0]._id, orderDate: '2020-10-04', resultDate: '2020-11-04', labTest_id: allLabTest[0]._id, status: 'zwykły', resultValue: 50.02, resultComment: 'kolejny istotny komentarz' },
-                    { patient_id: allPatients[1]._id, orderDate: '2020-10-11', resultDate: null, labTest_id: allLabTest[0]._id, status: 'zwykły', resultValue: null, resultComment: 'kolejny istotny komentarz' },
-                    { patient_id: allPatients[0]._id, orderDate: '2020-10-04', resultDate: '2020-11-04', labTest_id: allLabTest[1]._id, status: 'cito', resultValue: 4.2, resultComment: 'kolejny istotny komentarz' }
+                    { patient_id: allPatients[0]._id, orderDate: '2020-10-04', resultDate: '2020-11-04', labTest_id: allLabTest[0]._id, status: 'zwykły', resultValue: 50.02, resultComments: 'kolejny istotny komentarz1' },
+                    { patient_id: allPatients[1]._id, orderDate: '2020-10-11', resultDate: null, labTest_id: allLabTest[0]._id, status: 'zwykły', resultValue: null, resultComments: 'kolejny istotny komentarz2' },
+                    { patient_id: allPatients[0]._id, orderDate: '2020-10-04', resultDate: '2020-11-04', labTest_id: allLabTest[1]._id, status: 'cito', resultValue: 4.2, resultComments: 'kolejny istotny komentarz3' }
                 ]);
             } else {
                 return ord;

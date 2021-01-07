@@ -50,7 +50,7 @@
 
 				<label for="PatientComments"> Uwagi:</label>
 				<textarea name="PatientComments" id="PatientComments" rows="10" cols="30"
-					value="<%= pat.PatientComments %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>></textarea>
+					 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>><%= pat.PatientComments %></textarea>
 
 				<p id="errorSummary" class="errors-text"><%=(Array.isArray(validationErrors) && validationErrors.length) ? 'Formularz zawiera błędy' : '' %></p>
 				<% if (formMode=='showDetails' ) { %>
@@ -82,6 +82,7 @@
 						<th>Data zlecenia</th>
 						<th>Data wyniku</th>
 						<th>Wynik</th>
+						<th>Komentarz zlecenia</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -100,7 +101,11 @@
 								<%= e.resultDate==null ? '' : e.resultDate.toISOString().split('T')[0] %>
 							</td>
 							<td>
-								<%= e.resultValue==null ? '' : e.resultValue+' '+e.labTest.units%></td>
+								<%= e.resultValue==null ? '' : e.resultValue+' '+e.labTest.units%>
+							</td>
+							<td>
+								<%=e.resultComments%>
+							</td>
 			</tr>
 			<% } %>
 		</tbody>

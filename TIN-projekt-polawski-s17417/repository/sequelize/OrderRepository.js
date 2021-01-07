@@ -40,7 +40,7 @@ exports.createOrder = (data) => {
         labTest_id: data.labTest_id,
         status: data.status,
         resultValue: data.resultValue=='' ? null: data.resultValue,
-        resultComment: data.resultComment
+        resultComments: data.resultComments
     });
 };
 
@@ -52,7 +52,7 @@ exports.updateOrder = (orderId, data) => {
         labTest_id: data.labTest_id,
         status: data.status,
         resultValue: data.resultValue=='' ? null: data.resultValue,
-        resultComment: data.resultComment
+        resultComments: data.resultComments
     },
         { where: { _id: orderId } });
 }

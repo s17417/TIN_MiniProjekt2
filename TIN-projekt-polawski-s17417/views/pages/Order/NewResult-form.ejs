@@ -68,7 +68,7 @@
 			</span>
 
 			<label for="resultComments"> Uwagi:</label>
-			<textarea name="resultComments" id="resultComments" rows="10" cols="30" <%= formMode=='showDetails' ? 'disabled' : '' %> ><%= ord.ResultComments %></textarea>
+			<textarea name="resultComments" id="resultComments" rows="10" cols="30" <%= formMode=='showDetails' ? 'disabled' : '' %>><%= ord.resultComments %></textarea>
 
 			<p id="errorSummary" class="errors-text"><%=(Array.isArray(validationErrors) && validationErrors.length) ? 'Formularz zawiera błędy' : '' %></p>
 			<% if (formMode=='showDetails' ) { %>

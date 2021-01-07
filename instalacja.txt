@@ -1,0 +1,34 @@
+projekt nie zawiera katalogu node_modules
+stworzyc pusty projekt (npx express-generator --view=ejs TIN-projekt-polawski-s17417)
+
+przekopiowaæ wszystkie pliki i foldery projektu do stworzonego projektu
+
+
+projekt wykonany w ramach podejœcia numer 2 - zastosowanie mapowania relacyjno obiektowego w
+postaci biblioteki Sequelize
+
+intalacja dockera
+uruchomienie pliku konfiguracyjnego docker-compose.yml dockera znajduj¹cego siê w podkatalogu
+docker poleceniem:
+docker-compose up
+
+
+Wymagane bibliotekiw Node.js:
+biblioteka do obs³ugi mysql2 (instalacja: npm i mysql2)
+
+biblioteka Sequelize w Node.js (instalacja: npm i sequelize)
+
+utworzyæ shema w mysql2 przez phpAdmin poleceniem:
+CREATE SCHEMA IF NOT EXISTS `tin-s17417-sequelize`;
+
+
+
+projekt uruchmic wywo³uj¹c npm start w katalogu projektu
+
+Wykorzystane technologie:
+Node js
+ejs
+Sequelize
+Docker
+PHPAdmin
+mysql2
