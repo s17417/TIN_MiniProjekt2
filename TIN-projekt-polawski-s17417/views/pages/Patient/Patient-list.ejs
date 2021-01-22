@@ -1,15 +1,15 @@
 <%- include('../../fragments/header.ejs') %>
 
 	<main>
-		<h2>Lista Pacjentów</h2>
+		<h2><%=__('patient.list.pageTitle')%></h2>
 		<table class="table-list">
 			<thead>
 				<tr>
-					<th>Imię</th>
-					<th>Nazwisko</th>
-					<th>Pesel</th>
-					<th>Data urodzenia</th>
-					<th>Akcje</th>
+					<th><%=__('patient.fields.firstName')%></th>
+					<th><%=__('patient.fields.lastName')%></th>
+					<th><%=__('patient.fields.idnumber')%></th>
+					<th><%=__('patient.fields.birthdate')%></th>
+					<th><%=__('list.actions.title')%></th>
 				</tr>
 			<tbody>
 				<% for (let pat of pats) { %>
@@ -29,11 +29,11 @@
 						<td>
 							<ul class="list-actions">
 								<li><a href="/patients/details/<%=pat._id%>"
-										class="list-actions-button-details">Szczegóły</a>
+										class="list-actions-button-details"><%=__('list.actions.details')%></a>
 								</li>
-								<li><a href="/patients/edit/<%=pat._id%>" class="list-actions-button-edit">Edytuj</a>
+								<li><a href="/patients/edit/<%=pat._id%>" class="list-actions-button-edit"><%=__('list.actions.edit')%></a>
 								</li>
-								<li><a href="/patients/delete/<%=pat._id%>" class="list-actions-button-delete">Usuń</a>
+								<li><a href="/patients/delete/<%=pat._id%>" class="list-actions-button-delete"><%=__('list.actions.delete')%></a>
 								</li>
 
 							</ul>
@@ -45,7 +45,7 @@
 
 		</table>
 		<p>
-			<a href="/patients/add" class="button-add">Dodaj nowego pacjenta</a>
+			<a href="/patients/add" class="button-add"><%=__('patient.list.addNew')%></a>
 		</p>
 	</main>
 

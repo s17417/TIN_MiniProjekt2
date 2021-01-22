@@ -16,9 +16,9 @@ exports.showLabTestList = (req, res, next) => {
 exports.showAddLabTestForm = (req, res, next) => {
     res.render('pages/LabTest/LabTest-form', { 
         lab: [],
-        pageTitle: 'Nowe badanie',
+        pageTitle: res.__('labTest.form.add.pageTitle'),
         formMode: 'createNew',
-        btnLabel: 'Dodaj badanie',
+        btnLabel: res.__('labTest.form.add.btnLabel'),
         formAction: '/labTests/add',
         navLocation: 'labTest',
         validationErrors: [] 
@@ -32,8 +32,8 @@ exports.showEditLabTestForm = (req, res, next) => {
             res.render('pages/LabTest/LabTest-form', {
                 lab: lab,
                 formMode: 'edit',
-                pageTitle: 'Edycja badania',
-                btnLabel: 'Edytuj badanie',
+                pageTitle: res.__('labTest.form.edit.pageTitle'),
+                btnLabel: res.__('labTest.form.edit.btnLabel'),
                 formAction: '/labTests/edit',
                 navLocation: 'labTest',
                 validationErrors: []
@@ -49,7 +49,7 @@ exports.showLabTestDetails = (req, res, next) => {
             res.render('pages/LabTest/LabTest-form', {
                 lab: lab,
                 formMode: 'showDetails',
-                pageTitle: 'Szczegóły badania',
+                pageTitle: res.__('labTest.form.details.pageTitle'),
                 formAction: '',
                 navLocation: 'labTest',
                 validationErrors: []
@@ -66,9 +66,9 @@ exports.addLabTest = (req, res, next) => {
             console.log(err);
             res.render('pages/LabTest/LabTest-form', { 
                 lab: labData,
-                pageTitle: 'Nowe badanie',
+                pageTitle: res.__('labTest.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Dodaj badanie',
+                btnLabel: res.__('labTest.form.add.btnLabel'),
                 formAction: '/labTests/add',
                 navLocation: 'labTest',
                 validationErrors: err.errors
@@ -90,8 +90,8 @@ exports.updateLabTest = (req, res, next) => {
                 res.render('pages/LabTest/LabTest-form', { 
                     lab: labData,
                     formMode: 'edit',
-                    pageTitle: 'Edycja badania',
-                    btnLabel: 'Edytuj badanie',
+                    pageTitle: res.__('labTest.form.edit.pageTitle'),
+                    btnLabel: res.__('labTest.form.edit.btnLabel'),
                     formAction: '/labTests/edit',
                     navLocation: 'labTest',
                     validationErrors: err.errors
@@ -107,7 +107,3 @@ exports.deleteLabtest = (req, res, next) => {
         res.redirect('/labTests');
     });
 };
-
-/*exports.showLabTestForm = (req, res, next) => {
-    res.render('pages/LabTest/LabTest-form', { navLocation: 'patient' });
-}*/

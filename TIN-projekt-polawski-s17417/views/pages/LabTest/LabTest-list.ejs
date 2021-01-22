@@ -1,13 +1,13 @@
 <%- include('../../fragments/header.ejs') %>
 
 <main>
-	<h2>Lista dostępnych badań</h2>
+	<h2><%=__('labTest.list.pageTitle')%></h2>
 	<table class="table-list">
 		<thead>
 			<tr>
-				<th>Nazwa</th>
-				<th>Jednostki</th>
-				<th>Akcje</th>
+				<th><%=__('labTest.fields.name')%></th>
+				<th><%=__('labTest.fields.units')%></th>
+				<th><%=__('list.actions.title')%></th>
 			</tr>
 		<tbody>
 			<% for (let lab of labs) { %>
@@ -16,10 +16,10 @@
 					<td><%= lab.units %></td>
 					<td>
 						<ul class="list-actions">
-							<li><a href="/labTests/details/<%=lab._id %>" class="list-actions-button-details">Szczegóły</a>
+							<li><a href="/labTests/details/<%=lab._id %>" class="list-actions-button-details"><%=__('list.actions.details')%></a>
 							</li>
-							<li><a href="/labTests/edit/<%=lab._id %>" class="list-actions-button-edit">Edytuj</a></li>
-							<li><a href="/labTests/delete/<%=lab._id %>" class="list-actions-button-delete">Usuń</a></li>
+							<li><a href="/labTests/edit/<%=lab._id %>" class="list-actions-button-edit"><%=__('list.actions.edit')%></a></li>
+							<li><a href="/labTests/delete/<%=lab._id %>" class="list-actions-button-delete"><%=__('list.actions.delete')%></a></li>
 
 						</ul>
 					</td>
@@ -30,7 +30,7 @@
 
 	</table>
 	<p>
-		<a href="/labTests/add" class="button-add">Dodaj nowe badanie</a>
+		<a href="/labTests/add" class="button-add"><%=__('labTest.list.addNew')%></a>
 	</p>
 </main>
 

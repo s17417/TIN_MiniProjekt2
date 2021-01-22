@@ -3,7 +3,14 @@
 	<main>
 		<script type="application/javascript" src="/js/validationPatientForm.js"></script>
 		<h2><%= pageTitle %></h2>
-		<form class="form" method="post" action="<%=formAction%>" novalidate onsubmit=" return validateForm();">
+		<form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validationForm();">
+			<div style="display: none">
+				<span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+				<span id="errorMessage-textLengthRange"><%= __('validationMessage.textLengthRange') %></span>
+				<span id="errorMessage-summary"><%= __('validationMessage.summary') %></span>
+				<span id="errorMessage-futureDate"><%= __('validationMessage.futureDate') %></span>
+				<span id="errorMessage-idNumberLength"><%= __('validationMessage.idNumberLength') %></span>
+			</div>
 			<fieldset>
 				<legend>
 					<%= pageTitle %>
@@ -11,7 +18,7 @@
 
 				<input type="hidden" name="_id" value="<%= pat._id %>">
 
-				<label for="firstname"> Imię:<sup>*</sup></label>
+				<label for="firstname"><%=__('patient.fields.firstName')%>:<sup>*</sup></label>
 				<input type="text" name="firstname" id="firstname" class="<%= validationErrors.find(e => e.path.includes('firstname')) ? 'error-input' : '' %>" placeholder="2-60 znaków"
 					value="<%= pat.firstname %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
 				<span id="errorFirstname" class="errors-text">
@@ -20,7 +27,7 @@
 					<% } %>
 				</span>
 
-				<label for="surname"> Nazwisko:<sup>*</sup></label>
+				<label for="surname"><%=__('patient.fields.lastName')%>:<sup>*</sup></label>
 				<input type="text" name="surname" id="surname" class="<%= validationErrors.find(e => e.path.includes('surname')) ? 'error-input' : '' %>" placeholder="2-60 znaków" value="<%= pat.surname %>"
 					<%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
 				<span id="errorSurname" class="errors-text">
@@ -29,7 +36,7 @@
 					<% } %>
 				</span>
 
-				<label for="birthdate">Data urodzenia:<sup>*</sup></label>
+				<label for="birthdate"><%=__('patient.fields.birthdate')%>:<sup>*</sup></label>
 				<input type="date" id="birthdate" name="birthdate" min="1901-01-01" class="<%= validationErrors.find(e => e.path.includes('birthdate')) ? 'error-input' : '' %>"
 					value="<%= pat.birthdate=='' || pat.birthdate==null ? '' : new Date(pat.birthdate).toISOString().split('T')[0] %>" <%=(formMode=='showDetails' ) ? 'disabled'
 					: '' %> />
@@ -39,7 +46,7 @@
 					<% } %>
 				</span>
 
-				<label for="idnumber"> PESEL:</label>
+				<label for="idnumber"><%=__('patient.fields.idnumber')%>:</label>
 				<input type="text" name="idnumber" id="idnumber" class="<%= validationErrors.find(e => e.path.includes('idnumber')) ? 'error-input' : '' %>" placeholder="11 znaków" value="<%= pat.idnumber %>"
 					<%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
 				<span id="errorId" class="errors-text">
@@ -48,20 +55,20 @@
 					<% } %>
 				</span>
 
-				<label for="PatientComments"> Uwagi:</label>
+				<label for="PatientComments"><%=__('patient.fields.comments')%>:</label>
 				<textarea name="PatientComments" id="PatientComments" rows="10" cols="30"
 					 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>><%= pat.PatientComments %></textarea>
 
 				<p id="errorSummary" class="errors-text"><%=(Array.isArray(validationErrors) && validationErrors.length) ? 'Formularz zawiera błędy' : '' %></p>
 				<% if (formMode=='showDetails' ) { %>
 					<div class="form-buttons">
-						<a href="/patients/edit/<%= pat._id %>" class="form-button-edit">Edytuj</a>
-						<a class="form-button-cancel" href="/patients">Powrót</a>
+						<a href="/patients/edit/<%= pat._id %>" class="form-button-edit"><%=__('form.actions.edit')%></a>
+						<a class="form-button-cancel" href="/patients"><%=__('form.actions.return')%></a>
 					</div>
 				<% } else { %>
 					<div class="form-buttons">
 						<input type="submit" class="form-button-submit" value="<%=btnLabel%>" />
-						<a class="form-button-cancel" href="/patients">Anuluj</a>
+						<a class="form-button-cancel" href="/patients"><%=__('form.actions.cancel')%></a>
 					</div>
 
 				<% } %>
@@ -72,17 +79,17 @@
 
 		<% if (formMode=='showDetails' || formMode=='edit' ) { %>
 			<h2>
-				Lista zleconych badań
+				<%=__('patient.form.orders')%>
 			</h2>
 			<table class="table-list">
 				<thead>
 					<tr>
-						<th>Badanie laboratoryjne</th>
-						<th>Status</th>
-						<th>Data zlecenia</th>
-						<th>Data wyniku</th>
-						<th>Wynik</th>
-						<th>Komentarz zlecenia</th>
+						<th><%=__('labTest.fields.name')%></th>
+						<th><%=__('order.fields.status')%></th>
+						<th><%=__('order.fields.orderDate')%></th>
+						<th><%=__('order.fields.resultDate')%></th>
+						<th><%=__('order.fields.result')%></th>
+						<th><%=__('order.fields.comments')%></th>
 					</tr>
 				</thead>
 				<tbody>

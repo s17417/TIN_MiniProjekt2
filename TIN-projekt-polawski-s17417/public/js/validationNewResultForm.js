@@ -5,6 +5,16 @@ function validateForm() {
     const labTestsInput = document.getElementById('labTest_id');
     const statusInput = document.getElementById('status');
     const resultValueInput = document.getElementById('resultValue');
+    const reqMessage = document.getElementById('errorMessage-required').innerText;
+    const lenMessage = document.getElementById('errorMessage-textLengthRange').innerText;
+    const sumMessage= document.getElementById('errorMessage-summary').innerText;
+    const futMessage= document.getElementById('errorMessage-futureDate').innerText;
+    const idLenMessage= document.getElementById('errorMessage-idNumberLength').innerText;    
+    const numSizeMessage= document.getElementById('errorMessage-resultMaxNumber').innerText;    
+    const dateFormatMessage= document.getElementById('errorMessage-dateFormat').innerText;    
+    const resDatAftOrdDatMessage= document.getElementById('errorMessage-resDatAftOrdDat').innerText;    
+
+
 
     const errorPatients = document.getElementById('errorPatients');
     const errorOrderDate = document.getElementById('errorOrderDate');
@@ -23,19 +33,19 @@ function validateForm() {
     if (!checkRequired(patientsInput.value)) {
         valid = false;
         patientsInput.classList.add("error-input");
-        errorPatients.innerText = "Pole jest wymagane";
+        errorPatients.innerText = reqMessage;
     }
 
     if (!checkRequired(labTestsInput.value)) {
         valid = false;
         labTestsInput.classList.add("error-input");
-        errorLabTests.innerText = "Pole jest wymagane";
+        errorLabTests.innerText = reqMessage;
     }
 
     if (resultValueInput.value && (!checkNumber(resultValueInput.value) || !checkREGEX(resultValueInput.value,/^(\d{0,7})(([.,]\d*)|)$/))) {
         valid = false;
         resultValueInput.classList.add("error-input");
-        errorResultValue.innerText = "Pole powinno być liczbą max 10e7";
+        errorResultValue.innerText = numSizeMessage;
     }
 
     let nowDate = new Date(),
@@ -52,25 +62,25 @@ function validateForm() {
     if (orderDateInput.value && !checkDate(orderDateInput.value)) {
         valid = false;
         orderDateInput.classList.add("error-input");
-        errorOrderDate.innerText = "Pole powinno zawierać datę w formacie yyyy-MM-dd (np. 2000-01-01)";
+        errorOrderDate.innerText = dateFormatMessage;
     } else if (checkDateIfAfter(orderDateInput.value, nowString)) {
         valid = false;
         orderDateInput.classList.add("error-input");
-        errorOrderDate.innerText = "Data nie może być z przyszłości";
+        errorOrderDate.innerText = futMessage;
     } else if (checkDateIfAfter(resultDateInput.value, nowString)) {
         valid = false;
         resultDateInput.classList.add("error-input");
-        errorResultDate.innerText = "Data nie może być z przyszłości";
+        errorResultDate.innerText = futMessage;
     } else if (orderDateInput.value && resultDateInput.value && checkDate(resultDateInput.value)
         && !checkDateIfAfter(resultDateInput.value, orderDateInput.value)) {
         valid = false;
         resultDateInput.classList.add("error-input");
-        errorResultDate.innerText = "Data wyniku musi być późniejsza niż zlecenia";
+        errorResultDate.innerText = resDatAftOrdDatMessage;
     }
 
     //ogolna infromacja
     if (!valid) {
-        errorSummary.innerText = "Formularz zawiera błędy";
+        errorSummary.innerText = sumMessage;
     }
 
     return valid;

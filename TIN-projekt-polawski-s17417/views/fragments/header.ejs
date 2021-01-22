@@ -1,26 +1,42 @@
 <!DOCTYPE html>
-<html lang="pl-PL">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css" />
     <script type="application/javascript" src="/js/validationCommon.js"></script>
-    <title>Rejestr badań laboratoryjnych</title>
+    <title><%=__('html-title.title')%></title>
 </head>
 
 <body>
 
     <header>
-        <h1>Rejestr badań laboratoryjnych</h1>
-        <img src="/img/11-60.png" alt="rejestr">
+       
+        <div class="headerBox">
+            <h1><%=__('html-title.title')%></h1>
+            <img src="/img/11-60.png" alt="rejestr">
+        </div>
+        <% if(loggedUser) { %>
+            <span class="loginInfo"><%=__('authentication.identification')%>: <%=loggedUser.email%></span>
+            <a href="/logout" class="logout"><%=__('authentication.logout')%></a>
+        <% } %>
+        <ul class="lang">
+            <li style="margin-right: 10px;"><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : ''%>">PL</a></li>
+            <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : ''%>">EN</a></li>
+        </ul>
     </header>
 
     <nav>
         <ul>
-            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : '' %>">Strona główna</a></li>
-            <li><a href="/patients/" class="<%= navLocation == 'patient' ? 'active' : '' %>">Pacjenci</a></li>
-            <li><a href="/labTests/" class="<%= navLocation == 'labTest' ? 'active' : '' %>">Badania</a></li>
-            <li><a href="/orders/" class="<%= navLocation == 'order' ? 'active' : '' %>">Zlecenia</a></li>
+            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : '' %>"><%=__('nav.main-page') %></a></li>
+            <% if (loggedUser) {  %>
+            <li><a href= "/patients/" class="<%= navLocation == 'patient' ? 'active' : '' %>"><%=__('nav.patients') %></a></li>
+            <li><a href= "/labTests/" class="<%= navLocation == 'labTest' ? 'active' : '' %>"><%=__('nav.labTest') %></a></li>
+            <li><a href= "/orders/" class="<%= navLocation == 'order' ? 'active' : '' %>"><%=__('nav.orders') %></a></li>
+            <% if (loggedUser.isAdmin) {  %>
+            <li><a href= "/users/" class="<%= navLocation == 'user' ? 'active' : '' %>"><%=__('nav.users') %></a></li>
+            <% } %>
+            <% } %>
         </ul>
     </nav>

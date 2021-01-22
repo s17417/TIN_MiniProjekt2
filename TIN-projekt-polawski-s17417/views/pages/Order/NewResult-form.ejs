@@ -6,11 +6,22 @@
 
 	<form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
 		<fieldset>
+			<div style="display: none">
+				<span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+				<span id="errorMessage-textLengthRange"><%= __('validationMessage.textLengthRange') %></span>
+				<span id="errorMessage-summary"><%= __('validationMessage.summary') %></span>
+				<span id="errorMessage-futureDate"><%= __('validationMessage.futureDate') %></span>
+				<span id="errorMessage-idNumberLength"><%= __('validationMessage.idNumberLength') %></span>
+				<span id="errorMessage-resultMaxNumber"><%= __('validationMessage.resultMaxNumber') %></span>
+				<span id="errorMessage-dateFormat"><%= __('validationMessage.dateFormat') %></span>
+				<span id="errorMessage-resDatAftOrdDat"><%= __('validationMessage.resDatAftOrdDat') %></span>
+
+			</div>
 			<legend><%= pageTitle %></legend>
 
 			<input type="hidden" name="_id" value="<%= ord._id %>">
 
-			<label for="patient_id">Pacjent:<sup>*</sup></label>
+			<label for="patient_id"><%=__('order.fields.patientId')%>:<sup>*</sup></label>
 			<select name="patient_id" id="patient_id" class="<%= validationErrors.find(e => e.path.includes('patient_id')) ? 'error-input' : '' %>" <%= formMode=='showDetails' ? 'disabled' : '' %>>
 				<option value="" label="-- Wybierz pacjenta --" disabled hidden <%=!ord.patient_id && formMode=='createNew' ? 'selected' : '' %>/>
 				<% for (let pat of allPats) { %>
@@ -23,7 +34,7 @@
 				<% } %>
 			</span>
 
-			<label for="orderDate">Data zlecenia:</label>
+			<label for="orderDate"><%=__('order.fields.orderDate')%>:</label>
 			<input type="date" id="orderDate" name="orderDate" min="2018-01-01" class="<%= validationErrors.find(e => e.path.includes('orderDate')) ? 'error-input' : '' %>" value="<%= ord.orderDate=='' || ord.orderDate==null ? '' : new Date(ord.orderDate).toISOString().split('T')[0] %>" <%= formMode=='showDetails' ? 'disabled' : '' %> />
 			<span id="errorOrderDate" class="errors-text">
 				<% if (validationErrors.find(e => e.path.includes('orderDate'))) { %>
@@ -31,7 +42,7 @@
 				<% } %>
 			</span>
 
-			<label for="resultDate">Data wyniku:</label>
+			<label for="resultDate"><%=__('order.fields.resultDate')%>:</label>
 			<input type="date" id="resultDate" name="resultDate" min="2018-01-01" class="<%= validationErrors.find(e => e.path.includes('resultDate')) ? 'error-input' : '' %>" value="<%= ord.resultDate=='' || ord.resultDate==null ? '' : new Date(ord.resultDate).toISOString().split('T')[0] %>" <%= formMode=='showDetails' ? 'disabled' : '' %> />
 			<span id="errorResultDate" class="errors-text">
 				<% if (validationErrors.find(e => e.path.includes('resultDate'))) { %>
@@ -39,7 +50,7 @@
 				<% } %>
 			</span>
 
-			<label for="labTest_id"> Badanie:<sup>*</sup></label>
+			<label for="labTest_id"><%=__('order.fields.labTestId')%>:<sup>*</sup></label>
 			<select id="labTest_id" name="labTest_id" class="<%= validationErrors.find(e => e.path.includes('labTest_id')) ? 'error-input' : '' %>" <%= formMode=='showDetails' ? 'disabled' : '' %>>
 				<option value="" label="-- Wybierz badanie --" disabled hidden <%=!ord.labTest_id && formMode=='createNew' ? 'selected' : '' %> />
 				<% for (lab of allLabs) { %>
@@ -52,14 +63,14 @@
 				<% } %>
 			</span>
 
-			<label for="status"> Status:</label>
+			<label for="status"><%=__('order.fields.status')%>:</label>
 			<select id="status" name="status" <%= formMode=='showDetails' ? 'disabled' : '' %>>
 				<option value="Zwykły" label="Zwykły" <%= formMode!='createNew' &&  ord.status=='Zwykły'? 'selected' : ''%> />
 				<option value="Cito" label="Cito" <%= formMode!='createNew' &&  ord.status=='Cito'? 'selected' : ''%> />
 			</select>
 			<span id="errorStatus" class="errors-text"></span>
 
-			<label for="resultValue">Wynik:</label>
+			<label for="resultValue"><%=__('order.fields.result')%>:</label>
 			<input id="resultValue" name="resultValue" type="number" class="<%= validationErrors.find(e => e.path.includes('resultValue')) ? 'error-input' : '' %>" value="<%= ord.resultValue %>" <%= formMode=='showDetails' ? 'disabled' : '' %> />
 			<span id="errorResultValue" class="errors-text">
 				<% if (validationErrors.find(e => e.path.includes('resultValue'))) { %>
@@ -67,19 +78,19 @@
 				<% } %>
 			</span>
 
-			<label for="resultComments"> Uwagi:</label>
+			<label for="resultComments"><%=__('order.fields.comments')%>:</label>
 			<textarea name="resultComments" id="resultComments" rows="10" cols="30" <%= formMode=='showDetails' ? 'disabled' : '' %>><%= ord.resultComments %></textarea>
 
 			<p id="errorSummary" class="errors-text"><%=(Array.isArray(validationErrors) && validationErrors.length) ? 'Formularz zawiera błędy' : '' %></p>
 			<% if (formMode=='showDetails' ) { %>
 				<div class="form-buttons">
-					<a href="/orders/edit/<%= ord._id %>" class="form-button-edit">Edytuj</a>
-					<a class="form-button-cancel" href="/orders">Powrót</a>
+					<a href="/orders/edit/<%= ord._id %>" class="form-button-edit"><%=__('form.actions.edit')%></a>
+					<a class="form-button-cancel" href="/orders"><%=__('form.actions.return')%></a>
 				</div>
 			<% } else { %>
 				<div class="form-buttons">
 					<input type="submit" class="form-button-submit" value="<%=btnLabel%>" />
-					<a class="form-button-cancel" href="/orders">Anuluj</a>
+					<a class="form-button-cancel" href="/orders"><%=__('form.actions.cancel')%></a>
 				</div>
 
 			<% } %>

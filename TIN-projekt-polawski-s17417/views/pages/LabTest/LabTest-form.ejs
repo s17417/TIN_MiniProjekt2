@@ -3,12 +3,17 @@
 <main>
     <script type="application/javascript" src="/js/validationLabTestForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+        <div style="display: none">
+            <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+            <span id="errorMessage-textLengthRange"><%= __('validationMessage.textLengthRange') %></span>
+            <span id="errorMessage-summary"><%= __('validationMessage.summary') %></span>
+        </div>
         <fieldset>
             <legend><%= pageTitle %></legend>
             <input type="hidden" name="_id" value="<%= lab._id %>">
 
-            <label for="name"> Nazwa:<sup>*</sup></label>
+            <label for="name"> <%=__('labTest.fields.name')%>:<sup>*</sup></label>
             <input type="text" name="name" id="name" class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>" value="<%= lab.name %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
             <span id="errorName" class="errors-text">
                 <% if (validationErrors.find(e => e.path.includes('name'))) { %>
@@ -16,7 +21,7 @@
                 <% } %>
             </span>
 
-            <label for="units"> Jednostki:<sup>*</sup></label>
+            <label for="units"> <%=__('labTest.fields.units')%>:<sup>*</sup></label>
             <input type="text" name="units" id="units" class="<%= validationErrors.find(e => e.path.includes('units')) ? 'error-input' : '' %>" value="<%= lab.units %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
             <span id="errorUnits" class="errors-text">
                 <% if (validationErrors.find(e => e.path.includes('units'))) { %>
@@ -28,13 +33,13 @@
             <p id="errorSummary" class="errors-text"><%=(Array.isArray(validationErrors) && validationErrors.length) ? 'Formularz zawiera błędy' : '' %></p>
 				<% if (formMode=='showDetails' ) { %>
 					<div class="form-buttons">
-						<a href="/labTests/edit/<%= lab._id %>" class="form-button-edit">Edytuj</a>
-						<a class="form-button-cancel" href="/labTests">Powrót</a>
+						<a href="/labTests/edit/<%= lab._id %>" class="form-button-edit"><%=__('form.actions.edit')%></a>
+						<a class="form-button-cancel" href="/labTests"><%=__('form.actions.return')%></a>
 					</div>
 					<% } else { %>
 						<div class="form-buttons">
 							<input type="submit" class="form-button-submit" value="<%=btnLabel%>" />
-							<a class="form-button-cancel" href="/labTests">Anuluj</a>
+							<a class="form-button-cancel" href="/labTests"><%=__('form.actions.cancel')%></a>
 						</div>
 
                         <% } %>
@@ -43,20 +48,20 @@
 
     <% if (formMode=='showDetails' || formMode=='edit' ) { %>
         <h2>
-            Lista powiązanych pacjentów
+            <%=__('labTest.form.orders')%>
         </h2>
         <table class="table-list">
             <thead>
                 <tr>
-                    <th>Nazwisko</th>
-                    <th>Imię</th>
-                    <th>Pesel</th>
-                    <th>Data urodzenia</th>
-                    <th>Data zlecenia</th>
-                    <th>Data wyniku</th>
-                    <th>Status</th>
-                    <th>Wynik</th>
-                    <th>Komentarz Zlecenia</th>
+                    <th><%=__('patient.fields.lastName')%></th>
+                    <th><%=__('patient.fields.firstName')%></th>
+                    <th><%=__('patient.fields.idnumber')%></th>
+                    <th><%=__('patient.fields.birthdate')%></th>
+                    <th><%=__('order.fields.orderDate')%></th>
+                    <th><%=__('order.fields.resultDate')%></th>
+                    <th><%=__('order.fields.status')%></th>
+                    <th><%=__('order.fields.result')%></th>
+                    <th><%=__('order.fields.comments')%></th>
                 </tr>
             </thead>
             <tbody>
@@ -65,7 +70,9 @@
                         <td><a href="/patients/details/<%= e.patient._id %>">
                             <%= e.patient.surname %>
                         </a></td>
-                        <td><%= e.patient.firstname %></td>
+                        <td>
+                            <%= e.patient.firstname %>
+                        </td>
                         
                         <td>
                             <%= e.patient.idnumber %>

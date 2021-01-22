@@ -36,9 +36,49 @@ footer {
    
 }
 
-header {
+.headerBox{
     display: flex;
     justify-content: space-between;
+}
+
+.loginForm form{
+    display: grid;
+    grid-template-columns: 115px 200px;   
+}
+
+.loginForm input{
+    margin-bottom: 0.5rem;
+}
+
+header {
+    display: flex;
+    flex-flow: column; 
+    padding-bottom: 0.5rem;
+}
+
+.lang{
+    padding: 0rem;
+    margin: 0rem;
+    float: left;
+    list-style-type: none;
+    height: 20px;
+    width: 30px;
+    display: flex;
+    flex-flow:row;
+}
+
+
+.lang a{
+    color:white;
+    text-decoration: none;
+}
+
+.lang a:hover{
+    color:#800000;
+}
+
+.lang .active{
+    color:#800000;
 }
 
 nav {
@@ -58,6 +98,8 @@ nav ul{
     margin: 0rem;
     padding: 0rem;
     list-style-type: none;
+    white-space: pre;
+    word-wrap: normal;
 }
 
 nav ul li a {
@@ -145,7 +187,8 @@ main h2 {
 .button-return,
 .form-button-submit,
 .form-button-cancel,
-.form-button-edit  {
+.form-button-edit,
+.loginForm input[type="submit"]{
     padding: 0.25rem 0.25rem;
     border: none;
     border-radius: 1.5rem;
@@ -165,8 +208,19 @@ main h2 {
 .button-return:hover,
 .form-button-submit:hover,
 .form-button-cancel:hover,
-.form-button-edit:hover {
+.form-button-edit:hover,
+.loginForm input[type="submit"]:hover {
     background-color: #80000028;
+}
+
+.loginForm input[type="submit"] {
+    margin-left: 1rem;
+}
+
+.loginForm input[type="submit"]:focus {
+    margin-left: 1rem;
+    outline: none;
+    box-shadow: 0 0 1px 2px black;
 }
 
 .button-return{
@@ -254,12 +308,48 @@ textarea {
     display: inline-block;
 }
 
+.loginForm input[type="email"],
+.loginForm input[type="password"] {
+    width: 170px;
+    border: 1px solid #2424aa;
+    color:#800000;
+    border-radius: 0.5rem;
+    padding: 0.3rem;
+    margin-left: 0.3rem;
+    margin-right: 0.4rem;
+}
+
+.loginForm input[type="email"]:focus,
+.loginForm input[type="password"]:focus {
+    outline: none;
+    box-shadow: 0 0 3px  #2424aa;
+    border-radius: 0.5rem;
+    padding: 0.3rem;    
+}
+
+.logout{
+    margin-top: 0.3rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-size:smaller;
+    text-decoration: none;
+}
+
+.loginInfo{
+    margin-top: 0.5rem;
+}
+
+.logout:hover{
+    color: #800000;
+}
+
 .form select, 
 .form textarea,
 .form input[type="text"],
 .form input[type="number"],
 .form input[type="date"],
-.form input[type="email"] {
+.form input[type="email"],
+.form input[type="password"] {
     border: 1px solid #2424aa;
     color:#800000;
     border-radius: 0.8rem;
@@ -268,12 +358,20 @@ textarea {
     grid-column: 2/3;
 }
 
+.form input[type="checkbox"]{
+    width:20px;
+    height: 20px;
+    margin: 5px;
+    font-size: 2em;
+}
+
 .form select:focus, 
 .form textarea:focus,
 .form input[type="text"]:focus,
 .form input[type="number"]:focus,
 .form input[type="date"]:focus,
-.form input[type="email"]:focus {
+.form input[type="email"]:focus,
+.form input[type="password"]:focus{
     outline: none;
     box-shadow: 0 0 3px  #2424aa;
     border-radius: 0.8rem;
@@ -322,7 +420,8 @@ abbr[title='required'] {
 }
 
 @media all and (max-width: 720px) {
-    header {
+
+    .headerBox {
         flex-direction: column;
     }
 

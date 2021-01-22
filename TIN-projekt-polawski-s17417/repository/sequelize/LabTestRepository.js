@@ -30,8 +30,6 @@ exports.createLabTest = (newLabTestData) => {
 };
 
 exports.updateLabTest = (labId, labData) => {
-    const name = labData.name;
-    const units = labData.units;
     return LabTest.update(labData, { where: { _id: labId } });
 };
 

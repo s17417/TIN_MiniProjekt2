@@ -3,6 +3,8 @@ const sequelize = require('./sequelize');
 const Patient = require('../../model/sequelize/Patient');
 const LabTest = require('../../model/sequelize/LabTest');
 const Order = require('../../model/sequelize/Order');
+const LoggedUser = require('../../model/sequelize/LoggedUser');
+const authUtil = require('../../util/authUtils');
 
 module.exports = () => {
     Patient.hasMany(Order, { as: 'orders', foreignKey: { name: 'patient_id', allowNull: false }, constraints: true, onDelete: 'CASCADE' });
@@ -62,5 +64,19 @@ module.exports = () => {
             } else {
                 return ord;
             }
-        });
+        }).then(
+            () => {
+               return LoggedUser.findAll();
+            }
+        ).then( loggedUser =>{
+            if(!loggedUser || loggedUser==0){
+                //const passHash = authUtil.hashPassword('12345');
+                return LoggedUser.bulkCreate([
+                    {email: 'jan@kowalski.pl', isAdmin: true, password: '12345', password1: '12345'/*password: passHash*/}
+                ],
+                {validate: true})
+            } else {
+
+            }
+        })
 };

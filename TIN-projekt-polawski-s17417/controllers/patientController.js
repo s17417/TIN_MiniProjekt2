@@ -13,9 +13,9 @@ exports.showPatientList = (req, res, next) => {
 exports.showAddPatientForm = (req, res, next) => {
     res.render('pages/Patient/Patient-form', {
         pat: {},
-        pageTitle: 'Nowy pacjent',
+        pageTitle: res.__('patient.form.add.pageTitle'),
         formMode: 'createNew',
-        btnLabel: 'Dodaj pacjenta',
+        btnLabel: res.__('patient.form.add.btnLabel'),
         formAction: '/patients/add',
         navLocation: 'patient',
         validationErrors: []
@@ -29,8 +29,8 @@ exports.showEditPatientForm = (req, res, next) => {
             res.render('pages/Patient/Patient-form', {
                 pat: pat,
                 formMode: 'edit',
-                pageTitle: 'Edycja pacjenta',
-                btnLabel: 'Edytuj pacjenta',
+                pageTitle: res.__('patient.form.edit.pageTitle'),
+                btnLabel: res.__('patient.form.edit.btnLabel'),
                 formAction: '/patients/edit',
                 navLocation: 'patient',
                 validationErrors:[]
@@ -45,7 +45,7 @@ exports.showPatientDetails = (req, res, next) => {
             res.render('pages/Patient/Patient-form', {
                 pat: pat,
                 formMode: 'showDetails',
-                pageTitle: 'Szczegóły pacjenta',
+                pageTitle: res.__('patient.form.details.pageTitle'),
                 formAction: '',
                 navLocation: 'patient',
                 validationErrors:[]
@@ -70,9 +70,9 @@ exports.addPatient = (req, res, next) => {
              });
             res.render('pages/Patient/Patient-form', {
                 pat: patData,
-                pageTitle: 'Nowy pacjent',
+                pageTitle: res.__('patient.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Dodaj pacjenta',
+                btnLabel: res.__('patient.form.add.btnLabel'),
                 formAction: '/patients/add',
                 navLocation: 'patient',
                 validationErrors: err.errors
@@ -96,9 +96,9 @@ exports.updatePatient = (req, res, next) => {
             patData.orders=pat.orders;
             res.render('pages/Patient/Patient-form', {
                 pat: patData,
-                pageTitle: 'Nowy pacjent',
+                pageTitle: res.__('patient.form.edit.pageTitle'),
                 formMode: 'edit',
-                btnLabel: 'Edytuj pacjenta',
+                btnLabel: res.__('patient.form.edit.btnLabel'),
                 formAction: '/patients/edit',
                 navLocation: 'patient',
                 validationErrors: err.errors

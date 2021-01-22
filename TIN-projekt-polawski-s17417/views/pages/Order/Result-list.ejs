@@ -1,18 +1,18 @@
 <%- include('../../fragments/header.ejs') %>
 
 <main>
-	<h2>Lista Zleconych badań</h2>
+	<h2><%=__('order.list.pageTitle')%></h2>
 	<table class="table-list">
 		<thead>
 			<tr>
-				<th>Imię</th>
-				<th>Nazwisko</th>
-				<th>Data ur.</th>
-				<th>Badanie</th>
-				<th>Data zlec.</th>
-				<th>Data wyn.</th>
-				<th>Wynik</th>
-				<th>Akcje</th>
+				<th><%=__('patient.fields.firstName')%></th>
+				<th><%=__('patient.fields.lastName')%></th>
+				<th><%=__('patient.fields.birthdate')%></th>
+				<th><%=__('patient.fields.idnumber')%></th>
+				<th><%=__('order.fields.orderDate')%></th>
+				<th><%=__('order.fields.resultDate')%></th>
+				<th><%=__('order.fields.result')%></th>
+				<th><%=__('list.actions.title')%></th>
 			</tr>
 		<tbody>
 			<% for (let ord of ords) { %>
@@ -26,10 +26,10 @@
 				<td><%= ord.resultValue==null ? '' : ord.resultValue+' '+ord.labTest.units %> </td>
 				<td>
 					<ul class="list-actions">
-						<li><a href="/orders/details/<%= ord._id %>" class="list-actions-button-details">Szczegóły</a>
+						<li><a href="/orders/details/<%= ord._id %>" class="list-actions-button-details"><%=__('list.actions.details')%></a>
 						</li>
-						<li><a href="/orders/edit/<%= ord._id %>" class="list-actions-button-edit">Edytuj</a></li>
-						<li><a href="/orders/delete/<%= ord._id %>" class="list-actions-button-delete">Usuń</a></li>
+						<li><a href="/orders/edit/<%= ord._id %>" class="list-actions-button-edit"><%=__('list.actions.edit')%></a></li>
+						<li><a href="/orders/delete/<%= ord._id %>" class="list-actions-button-delete"><%=__('list.actions.delete')%></a></li>
 
 					</ul>
 				</td>
@@ -40,7 +40,7 @@
 		<% } %>
 	</table>
 	<p>
-		<a href="/orders/add" class="button-add">Dodaj nowe zlecenie</a>
+		<a href="/orders/add" class="button-add"><%=__('order.list.addNew')%></a>
 	</p>
 </main>
 

@@ -1,0 +1,39 @@
+<%- include('../../fragments/header.ejs') %>
+
+<main>
+	<h2><%=__('users.list.title')%></h2>
+	<table class="table-list">
+		<thead>
+			<tr>
+				<th><%=__('users.fields.email')%></th>
+				<th><%=__('users.fields.isAdmin')%></th>
+				<th><%=__('users.fields.password')%></th>
+				<th><%=__('list.actions.title')%></th>
+			</tr>
+		<tbody>
+			<% for (let usr of usrs) { %>
+				<tr>
+					<td><%= usr.email %></td>
+					<td><%= usr.isAdmin==1?true:false%></td>
+					<td style="word-wrap:break-word; word-break: break-all;"><%= usr.password %></td>
+					<td>
+						<ul class="list-actions">
+							<li><a href="/users/details/<%=usr._id %>" class="list-actions-button-details"><%=__('list.actions.details')%></a>
+							</li>
+							<li><a href="/users/edit/<%=usr._id %>" class="list-actions-button-edit"><%=__('list.actions.edit')%></a></li>
+							<li><a href="/users/delete/<%=usr._id %>" class="list-actions-button-delete"><%=__('list.actions.delete')%></a></li>
+
+						</ul>
+					</td>
+				</tr>
+			<% } %>
+		</tbody>
+
+
+	</table>
+	<p>
+		<a href="/users/add" class="button-add"><%=__('users.list.addNew')%></a>
+	</p>
+</main>
+
+<%- include('../../fragments/footer.ejs') %>

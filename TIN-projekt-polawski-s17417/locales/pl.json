@@ -1,0 +1,186 @@
+{
+	"html-title": {
+		"title": "Rejestr badań laboratoryjnych"
+	},
+	"main-page": {
+		"content": "Strona główna"
+	},
+	"nav": {
+		"main-page": "Strona główna",
+		"patients": "Pacjenci",
+		"labTest": "Badania",
+		"orders": "Zlecenia",
+		"users": "Użytkownicy"
+	},
+	"list": {
+		"actions": {
+			"title": "Akcje",
+			"details": "Szczegóły",
+			"edit": "Edytuj",
+			"delete": "Usuń"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Powrót",
+			"edit": "Edytuj",
+			"cancel": "Anuluj"
+		}
+	},
+	"patient": {
+		"fields": {
+			"firstName": "Imię",
+			"lastName": "Nazwisko",
+			"birthdate": "Data urodzenia",
+			"idnumber": "PESEL",
+			"comments": "Uwagi"
+		},
+		"list": {
+			"title": "Pacjenci",
+			"addNew": "Dodaj nowego pacjenta",
+			"noData": "Brak pacjentów w bazie",
+			"pageTitle": "Lista pacjentów"
+		},
+		"form": {
+			"orders": "Lista zleconych badań",
+			"add": {
+				"pageTitle": "Nowy pacjent",
+				"btnLabel": "Dodaj pacjenta",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano pacjenta"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja pacjenta",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano pacjenta"
+				}
+			}
+		}
+	},
+	"labTest": {
+		"fields": {
+			"name": "Nazwa",
+			"units": "Jednostki"
+		},
+		"list": {
+			"title": "Badania",
+			"addNew": "Dodaj nowe badanie",
+			"noData": "Brak badań w bazie",
+			"pageTitle": "Lista dostępnych badań"
+		},
+		"form": {
+			"orders": "Lista powiązanych zleceń",
+			"add": {
+				"pageTitle": "Nowe badanie",
+				"btnLabel": "Dodaj badanie",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano badanie"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja badania",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano badanie"
+				}
+			},
+			"pageTitle": "labTest.form.pageTitle"
+		}
+	},
+	"order": {
+		"fields": {
+			"patientId": "Pacjent",
+			"orderDate": "Data zlecenia",
+			"resultDate": "Data wyniku",
+			"labTestId": "Badanie",
+			"status": "Status",
+			"result": "Wynik",
+			"comments": "Uwagi"
+		},
+		"list": {
+			"title": "Zlecenia",
+			"addNew": "Dodaj nowe zlecenie",
+			"noData": "Brak zleceń w bazie",
+			"pageTitle": "Lista dostępnych zleceń"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "Nowe zlecenie",
+				"btnLabel": "Dodaj zlecenie",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano zlecenie"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja zlecenia",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano zlecenie"
+				}
+			}
+		}
+	},
+	"users": {
+		"fields": {
+			"email": "E-mail",
+			"isAdmin": "Administrator",
+			"password": "Hasło",
+			"password1": "Hasło2"
+		},
+		"list": {
+			"title": "Użytkownicy",
+			"addNew": "Dodaj nowe zlecenie",
+			"noData": "Brak zleceń w bazie",
+			"pageTitle": "Lista użytkowników"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "Nowy użytkownik",
+				"btnLabel": "Dodaj użytkownika",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano użytkownika"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja użytkownika",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano użytkownika"
+				}
+			},
+			"details": {
+				"pageTitle": "Szczegóły użytkownika"
+			}
+		}
+	},
+	"validationMessage": {
+		"fieldRequired": "pole wymagane",
+		"textLengthRange": "pole powinno zawierac 2 - 60 znaków",
+		"summary": "Formularz zawiera błędy",
+		"futureDate": "Data nie może być z przyszłości",
+		"idNumberLength": "Pesel musi zawierać 11 cyfr",
+		"resultMaxNumber": "liczba jest za duża",
+		"dateFormat": "Data musi mieć format yyyy-MM-dd",
+		"resDatAftOrdDat": "data wyniku musi być mniejsza od daty zlecenia",
+		"email": "Musi zachować format email'a",
+		"passwords": "hasła nie są identyczne"
+	},
+	"authentication": {
+		"title": "Logowanie",
+		"email": "E-mail",
+		"password": "Hasło",
+		"btnLabel": "Zaloguj",
+		"identification": "Jesteś zalogowany jako",
+		"logout": "Wyloguj"
+	}
+}

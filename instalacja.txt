@@ -1,11 +1,12 @@
+
+projekt wykonany w ramach podejœcia numer 2 - zastosowanie mapowania relacyjno-obiektowego w
+postaci biblioteki Sequelize
+
+
 projekt nie zawiera katalogu node_modules
 stworzyc pusty projekt (npx express-generator --view=ejs TIN-projekt-polawski-s17417)
 
 przekopiowaæ wszystkie pliki i foldery projektu do stworzonego projektu
-
-
-projekt wykonany w ramach podejœcia numer 2 - zastosowanie mapowania relacyjno obiektowego w
-postaci biblioteki Sequelize
 
 intalacja dockera
 uruchomienie pliku konfiguracyjnego docker-compose.yml dockera znajduj¹cego siê w podkatalogu

@@ -1,0 +1,205 @@
+{
+	"html-title": {
+		"title": "Laboratory Test Database"
+	},
+	"main-page": {
+		"content": "Main page"
+	},
+	"nav": {
+		"main-page": "Main page",
+		"patients": "Patients",
+		"labTest": "Lab Tests",
+		"orders": "Orders",
+		"users": "Users"
+	},
+	"list": {
+		"actions": {
+			"title": "Actions",
+			"details": "Details",
+			"edit": "Edit",
+			"delete": "Delete"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Return",
+			"edit": "Edit",
+			"cancel": "Cancel"
+		}
+	},
+	"patient": {
+		"fields": {
+			"firstName": "First name",
+			"lastName": "Last name",
+			"birthdate": "Birth date",
+			"idnumber": "Personal ID",
+			"comments": "Comments"
+		},
+		"list": {
+			"title": "Patients",
+			"addNew": "Add new patient",
+			"noData": "No patient in database",
+			"pageTitle": "Patients list"
+		},
+		"form": {
+			"orders": "List of related orders",
+			"add": {
+				"pageTitle": "New patient",
+				"btnLabel": "Add patient",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new patient has been succesfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing the patient",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The patient has been successfully updated"
+				}
+			},
+			"details": {
+				"pageTitle": "Details of a patient"
+			}
+		}
+	},
+	"labTest": {
+		"fields": {
+			"name": "Name",
+			"units": "Units"
+		},
+		"list": {
+			"title": "Lab tests",
+			"addNew": "Add new test",
+			"noData": "No tests in databse",
+			"pageTitle": "List of tests"
+		},
+		"form": {
+			"orders": "Lists of related orders",
+			"add": {
+				"pageTitle": "New lab test",
+				"btnLabel": "Add test",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new test has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing a lab test",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The employee has been successfully updated"
+				}
+			},
+			"details": {
+				"pageTitle": "Details of a lab test"
+			}
+		}
+	},
+	"order": {
+		"fields": {
+			"patientId": "Patient",
+			"orderDate": "Order date",
+			"resultDate": "Result date",
+			"labTestId": "Lab test",
+			"status": "Status",
+			"result": "Result",
+			"comments": "Order comments"
+		},
+		"list": {
+			"title": "Orders",
+			"addNew": "Add new order",
+			"noData": "No orders in database",
+			"pageTitle": "List of orders"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "New order",
+				"btnLabel": "Add new order",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The order has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing an order",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The order has been successfully updated"
+				}
+			},
+			"details": {
+				"pageTitle": "Details of an order"
+			}
+		}
+	},
+	"users": {
+		"fields": {
+			"email": "E-mail",
+			"isAdmin": "Admin",
+			"password": "password",
+			"password1": "password2"
+		},
+		"list": {
+			"title": "Users",
+			"addNew": "Add new user",
+			"noData": "no users in databse",
+			"pageTitle": "List of users"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "New user",
+				"btnLabel": "Add new user",
+				"confirm": {
+					"header": "Conformation",
+					"text": "The user has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing an user",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The order has been successfully updated"
+				}
+			},
+			"details": {
+				"pageTitle": "Details of an user"
+			}
+		}
+	},
+	"validationMessage": {
+		"fieldRequired": "Field is required",
+		"textLengthRange": "Field should contain 2 - 60 chars",
+		"summary": "Form conatains errors",
+		"futureDate": "Field must contain past date",
+		"idNumberLength": "Id must contain 11 digits",
+		"resultMaxNumber": "The number is to large",
+		"dateFormat": "Date should be in format yyyy-MM-dd",
+		"resDatAftOrdDat": "result date should be before order date",
+		"email": "Must by in email format",
+		"passwords": "Password must by identical"
+	},
+	"authentication": {
+		"title": "Login",
+		"email": "E-mail",
+		"password": "Password",
+		"btnLabel": "Login",
+		"identification": "Logged as",
+		"logout": "Logout"
+	},
+	"user": {
+		"list": {
+			"title": "user.list.title",
+			"addNew": "user.list.addNew"
+		},
+		"fields": {
+			"email": "user.fields.email",
+			"admin": "user.fields.admin",
+			"password": "user.fields.password"
+		}
+	}
+}
